@@ -66,7 +66,7 @@ bool preload=false;
 bool useSampleOutput=false;
 
 
-int mode=0;
+int mode=1;
 
 bool firstRosSpin=false;
 
