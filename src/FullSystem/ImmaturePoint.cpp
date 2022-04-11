@@ -430,7 +430,7 @@ ImmaturePointStatus ImmaturePoint::traceOn(FrameHessian* frame,const Mat33f &hos
 	}
 
 	lastTracePixelInterval=2*errorInPixel; 	// 搜索的范围
-	lastTraceUV = Vec2f(bestU, bestV);		// 上一次得到的最有位置
+	lastTraceUV = Vec2f(bestU, bestV);		// 上一次得到的最好位置
 	return lastTraceStatus = ImmaturePointStatus::IPS_GOOD; 	//上一次的位置
 }
 
@@ -449,8 +449,8 @@ float ImmaturePoint::getdPixdd(
 	projectPoint(this->u,this->v, idepth, 0, 0,HCalib,
 			precalc->PRE_RTll,PRE_tTll, drescale, u, v, Ku, Kv, KliP, new_idepth);
 
-	float dxdd = (PRE_tTll[0]-PRE_tTll[2]*u)*HCalib->fxl();
-	float dydd = (PRE_tTll[1]-PRE_tTll[2]*v)*HCalib->fyl();
+	float dxdd = (PRE_tTll[0]-PRE_tTll[2]*u)*HCalib->fxl();//ss, 啥意思
+	float dydd = (PRE_tTll[1]-PRE_tTll[2]*v)*HCalib->fyl();//ss, 啥意思
 	return drescale*sqrtf(dxdd*dxdd + dydd*dydd);
 }
 

@@ -56,6 +56,8 @@
 
 #include <cmath>
 
+#include <opencv2/opencv.hpp>
+
 namespace dso
 {
 // Hessian矩阵计数, 有点像 shared_ptr
@@ -841,6 +843,8 @@ void FullSystem::flagPointsForRemoval()
  *******************************/
 void FullSystem::addActiveFrame( ImageAndExposure* image, int id )
 {
+	// ss, 如果没有光度矫正文件，image里的数据就是原始图像的灰度像素值
+
 	//[ ***step 1*** ] track线程锁
     if(isLost) return;
 	boost::unique_lock<boost::mutex> lock(trackMutex);

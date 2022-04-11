@@ -403,8 +403,9 @@ ImageAndExposure* Undistort::undistort(const MinimalImage<T>* image_raw, float e
 		printf("Undistort::undistort: wrong image size (%d %d instead of %d %d) \n", image_raw->w, image_raw->h, w, h);
 		exit(1);
 	}
-//[ ***step 1*** ] 去除光度参数的影响
-	photometricUndist->processFrame<T>(image_raw->data, exposure, factor); // 去除光度参数影响
+	//[ ***step 1*** ] 去除光度参数的影响
+	// ss, 如果没有光度矫正文件，或者mode=1，福照度值就是像素值
+    photometricUndist->processFrame<T>(image_raw->data, exposure, factor); // 去除光度参数影响
 	ImageAndExposure* result = new ImageAndExposure(w, h, timestamp);
 	photometricUndist->output->copyMetaTo(*result); // 只复制了曝光时间
 
@@ -501,7 +502,7 @@ template ImageAndExposure* Undistort::undistort<unsigned char>(const MinimalImag
 template ImageAndExposure* Undistort::undistort<unsigned short>(const MinimalImage<unsigned short>* image_raw, float exposure, double timestamp, float factor) const;
 
 
-//* 添加图像高斯噪声
+//* 添加图像高斯噪声// ss 就是给光照度图像加高斯噪声，如果没有给定光照度标定参数，那么就是给原图像加高斯噪声．
 void Undistort::applyBlurNoise(float* img) const
 {
 	if(benchmark_varBlurNoise==0) return;  // 不添加噪声

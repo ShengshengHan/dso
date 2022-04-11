@@ -182,7 +182,7 @@ EIGEN_ALWAYS_INLINE Eigen::Vector3f getInterpolatedElement33BiLin(const Eigen::V
 	float rightInt = dy * br + (1-dy) * tr;
 
 	return Eigen::Vector3f(
-			dx * rightInt + (1-dx) * leftInt,  	// 像素值
+			dx * rightInt + (1-dx) * leftInt,  	// 像素值 // ss 其实是光度值
 			rightInt-leftInt,					// x方向梯度
 			botInt-topInt);						// y方向梯度
 }
