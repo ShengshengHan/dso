@@ -172,8 +172,8 @@ struct FrameHessian
 
 
 	// precalc values
-	SE3 PRE_worldToCam;			//!< 预计算的, 位姿状态增量更新到位姿上
-	SE3 PRE_camToWorld;
+	SE3 PRE_worldToCam;			//!< 预计算的, 位姿状态增量更新到位姿上 // ss, 优化后的位姿
+	SE3 PRE_camToWorld; // ss, 优化后的位姿
 	std::vector<FrameFramePrecalc,Eigen::aligned_allocator<FrameFramePrecalc>> targetPrecalc; //!< 对于其它帧的预运算值
 	MinimalImageB3* debugImage;	//!< 小图???
 
